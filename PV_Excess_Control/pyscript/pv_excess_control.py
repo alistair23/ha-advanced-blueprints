@@ -591,7 +591,8 @@ class PvExcessControl:
             # switch off appliance
             _turn_off(inst.appliance_switch)
             inst.daily_run_time += (datetime.datetime.now() - inst.switched_on_time).total_seconds()
-            log.info(f'{inst.log_prefix} Switched off appliance.')
+            run_time_min = inst.daily_run_time / 60
+            log.info(f'{inst.log_prefix} Switched off appliance. Ran for {run_time_min:.1f} minutes')
             task.sleep(1)
             inst.switch_interval_counter = 0
             # "restart" history by adding defined power to each history value within the specified time frame
